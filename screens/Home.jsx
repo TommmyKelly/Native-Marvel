@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   TextInput,
   Keyboard,
+  Image,
 } from "react-native";
 import { API_KEY, HASH, TS } from "@env";
 import axios from "axios";
@@ -17,6 +18,7 @@ export default function App({ navigation }) {
   const flatListRef = useRef();
   const [state, setState] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
   const debouncedSearchTerm = useDebounce(inputValue, 1000);
 
   const searchStartsWith = () => {
@@ -33,6 +35,7 @@ export default function App({ navigation }) {
           state.length > 0 && Keyboard.dismiss();
           return state;
         });
+        setLoading(false);
         flatListRef.current.scrollToOffset({ animated: true, offset: 0 });
       })
       .catch((error) => {
@@ -60,6 +63,7 @@ export default function App({ navigation }) {
   useEffect(() => {
     if (debouncedSearchTerm) {
       searchStartsWith(debouncedSearchTerm);
+      setLoading(true);
     } else {
       getData();
     }
@@ -89,15 +93,19 @@ export default function App({ navigation }) {
         value={inputValue}
       />
 
-      <FlatList
-        ref={flatListRef}
-        style={{ width: "80%" }}
-        data={state}
-        renderItem={({ item }) => (
-          <HeroItem item={item} navigation={navigation} />
-        )}
-        keyExtractor={(item) => item.name}
-      />
+      {loading ? (
+        <Image source={require("../assets/loading.gif")} />
+      ) : (
+        <FlatList
+          ref={flatListRef}
+          style={{ width: "80%" }}
+          data={state}
+          renderItem={({ item }) => (
+            <HeroItem item={item} navigation={navigation} />
+          )}
+          keyExtractor={(item) => item.name}
+        />
+      )}
 
       <StatusBar style='auto' />
     </SafeAreaView>
@@ -109,6 +117,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
     alignItems: "center",
-    justifyContent: "center",
   },
 });
