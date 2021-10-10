@@ -17,7 +17,7 @@ export default function App({ navigation }) {
   const flatListRef = useRef();
   const [state, setState] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const debouncedSearchTerm = useDebounce(inputValue, 500);
+  const debouncedSearchTerm = useDebounce(inputValue, 1000);
 
   const searchStartsWith = () => {
     const config = {
@@ -74,7 +74,15 @@ export default function App({ navigation }) {
       <Text>Marvel</Text>
 
       <TextInput
-        style={{ width: "60%", borderWidth: 1, padding: 5, marginBottom: 5 }}
+        style={{
+          width: "60%",
+          borderWidth: 1,
+          padding: 5,
+          marginBottom: 10,
+          borderRadius: 5,
+
+          backgroundColor: "white",
+        }}
         placeholder='Search...'
         autoFocus={true}
         onChangeText={(text) => setInputValue(text)}
@@ -99,7 +107,7 @@ export default function App({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
   },

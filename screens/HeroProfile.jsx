@@ -27,17 +27,19 @@ export default HeroProfile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
   },
   description: {
     width: "80%",
     textAlign: "center",
+    color: "white",
   },
   text: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 5,
+    color: "white",
   },
 });

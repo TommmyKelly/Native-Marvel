@@ -8,7 +8,7 @@ const HeroItem = ({ navigation, item }) => {
   };
   return (
     <View style={styles.container}>
-      <Text>{item.name}</Text>
+      <Text style={styles.text}>{item.name}</Text>
       <View
         style={{
           width: "100%",
@@ -47,5 +47,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
+  },
+  text: {
+    color: "white",
+    fontWeight: "bold",
+    marginBottom: 10,
   },
 });
