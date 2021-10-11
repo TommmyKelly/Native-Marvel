@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, Dimensions } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 const HeroItem = ({ navigation, item }) => {
@@ -26,11 +26,11 @@ const HeroItem = ({ navigation, item }) => {
         >
           <Image
             style={{
-              height: undefined,
-              width: "100%",
-              aspectRatio: 0.7,
+              width: Dimensions.get("window").width - 10,
+              height: 300,
               marginBottom: 5,
             }}
+            resizeMode='stretch'
             source={{
               uri: `${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`,
             }}

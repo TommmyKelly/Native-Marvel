@@ -97,6 +97,8 @@ export default function App({ navigation }) {
         <Image source={require("../assets/loading.gif")} />
       ) : (
         <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           ref={flatListRef}
           style={{ width: "80%" }}
           data={state}
